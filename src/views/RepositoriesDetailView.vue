@@ -10,7 +10,7 @@
                 <span class="sr-only">Loading</span>
             </span>
         </div>
-        <div v-else-if="!isLoadingRepoInfo && !isLoadingTreesInfo && repoTrees && repoInfo">
+        <template v-else-if="!isLoadingRepoInfo && !isLoadingTreesInfo && repoTrees && repoInfo">
             <main class="grow relative flex flex-col overflow-hidden max-md:pb-2.5 max-md:pt-0">
                 <header class="flex flex-wrap md:items-center justify-between pb-3 mb-3 border-b-2 border-foreground">
                     <section>
@@ -115,8 +115,8 @@
                     </article>
                 </div>
             </main>
-        </div>
-        <div v-else class="grow flex items-center justify-center">
+        </template>
+        <div v-else class="grow w-full flex items-center justify-center">
             <ErrorCard>
                 <template #message>
                     <p>There was a problem fetching the details of this repo. Either it doesn't exist or there's a
@@ -133,8 +133,6 @@ import { ref, onMounted, computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { formatDistanceToNow } from 'date-fns';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faArrowLeft, faCodeFork, faFolder, faLink, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
-import { faEye, faFile, faStar } from '@fortawesome/free-regular-svg-icons';
 import ErrorCard from '@/components/ErrorCard.vue';
 import { Button } from '@/components/ui/button';
 import { cn, octokit } from '@/lib/utils';

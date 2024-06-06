@@ -32,7 +32,7 @@
         </div>
       </div>
     </section>
-    <footer class="sticky bottom-0 mt-2.5 mt-auto flex items-center gap-2 md:gap-6 justify-center bg-background">
+    <footer class="sticky bottom-0 mt-auto flex items-center gap-2 md:gap-6 justify-center bg-background">
       <div class="flex items-center gap-4 flex-wrap text-sm">
         <label class="max-md:hidden">Repos per page: </label>
         <Select class="flex items-center" v-model="itemsPerPage">

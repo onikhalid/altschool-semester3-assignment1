@@ -1,9 +1,11 @@
 <template>
     <Dialog :open="isModalOpen">
         <DialogTrigger>
-            <Button @click="setModalOpen(true)" variant="unstyled"
+            <Button @click="setModalOpen(true)"
                 class="flex items-center gap-2 py-2 border-2 border-foreground !h-max text-xs md:text-sm hover:bg-foreground hover:text-background">
-                <FontAwesomeIcon :icon="faPlusCircle" />
+                <!-- <FontAwesomeIcon :icon="faPlusCircle" /> -->
+                <FontAwesomeIcon :icon="['fas', 'plus-circle']" />
+
                 <p>Create New Repo</p>
             </Button>
         </DialogTrigger>
@@ -53,6 +55,7 @@ import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import { validateRepoName } from "../lib/utils";
 import { toast } from "sonner";
 import { ref, inject } from "vue";
+import type { UserRepo } from "@/types/github";
 
 export default {
     components: {
@@ -77,7 +80,7 @@ export default {
         const descriptionError = ref(false);
         const descriptionErrorMsg = ref('');
 
-        const setModalOpen = (isOpen) => {
+        const setModalOpen = (isOpen: boolean) => {
             isModalOpen.value = isOpen;
         };
 
@@ -108,7 +111,7 @@ export default {
             }
 
             // Check if the repository name already exists
-            const existingRepos = JSON.parse(localStorage.getItem('fakeRepos')) || [];
+            const existingRepos: UserRepo[] = JSON.parse(localStorage.getItem('fakeRepos') || "[]") || [];
             const isRepoExists = existingRepos.some(repo => repo.name.toLowerCase() === repoName.value.toLowerCase());
             if (isRepoExists) {
                 nameError.value = true;
@@ -122,8 +125,8 @@ export default {
             };
 
             const repoWithInfo = appendRepoInfo(newFakeRepo);
-            let existingArray = JSON.parse(localStorage.getItem('fakeRepos')) || [];
-            existingArray.push(repoWithInfo);
+            let existingArray: UserRepo[] = JSON.parse(localStorage.getItem('fakeRepos') || "[]") || [];
+            existingArray.push(repoWithInfo as unknown as UserRepo);
 
             let updatedArrayString = JSON.stringify(existingArray);
             localStorage.setItem('fakeRepos', updatedArrayString);
@@ -139,7 +142,7 @@ export default {
         };
 
         // Function to append additional information to the fake repositories
-        const appendRepoInfo = (repo) => {
+        const appendRepoInfo = (repo: { name: string; description: string; }) => {
             const reposWithInfo = {
                 ...repo,
                 id: Math.floor(Math.random() * 1000000),

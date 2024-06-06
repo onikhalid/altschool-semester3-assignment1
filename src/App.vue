@@ -5,6 +5,7 @@ import { RouterView, useRoute, RouterLink } from 'vue-router';
 import { cn } from '@/lib/utils';
 import AppBar from '@/components/AppBar.vue';
 import SideBar from '@/components/SideBar.vue';
+import CreateRepoModal from '@/components/CreateRepoModal.vue';
 import { type UserProfileType, type UserRepo } from './types/github';
 
 const userProfile = ref<UserProfileType | null>(null);
@@ -86,6 +87,9 @@ onMounted(fetchGitHubData);
             <RouterLink v-for="route in routesList"
               :class="cn('linetaboption !min-w-max', currentRoute.fullPath == route.path && 'active')" :to="route.path"
               v-bind:key="route.path">{{ route.name }}</RouterLink>
+            <div class="max-md:hidden mt-2 ml-auto">
+              <CreateRepoModal />
+            </div>
           </nav>
           <RouterView />
         </main>

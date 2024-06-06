@@ -53,11 +53,11 @@ export function validateRepoName(name: string) {
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faExclamationTriangle, faArrowLeft, faCodeFork, faFolder, faLink, faTriangleExclamation, faSearch, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faExclamationTriangle, faArrowLeft, faCodeFork, faFolder, faLink, faTriangleExclamation, faSearch, faArrowRight, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { faEye, faStar, faFile } from '@fortawesome/free-regular-svg-icons';
 import { faTwitter, faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons';
 
 // Add the icons to the library
-library.add(faExclamationTriangle, faArrowLeft, faCodeFork, faFolder, faLink, faTriangleExclamation, faEye, faStar, faFile, faTwitter, faFacebook, faInstagram, faSearch, faArrowRight);
+library.add(faExclamationTriangle, faArrowLeft, faCodeFork, faFolder, faLink, faTriangleExclamation, faEye, faStar, faFile, faTwitter, faFacebook, faInstagram, faSearch, faArrowRight, faPlusCircle);
 
 export { FontAwesomeIcon };
