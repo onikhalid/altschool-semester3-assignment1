@@ -1,5 +1,5 @@
 <template>
-    <article :key="repo.name"
+    <article v-if="repo && repo !== undefined" :key="repo.name"
         class="flex items-stretch gap-4 bg-background py-3 px-4 h-36 rounded-2xl border-foreground border-2 hover:[box-shadow:3px_3px_0px_3px_hsl(var(--foreground))]  hover:-translate-x-[1%] hover:-translate-y-[5%] transition-all duration-300">
         <section class="flex flex-col relative w-full">
             <header class="max-w-full">
@@ -72,7 +72,7 @@
     </article>
 </template>
 
-<script>
+<script lang="ts">
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome"
 import { faEye, faStar, faTrashAlt } from "@fortawesome/free-regular-svg-icons"
 import { faArrowUpRightFromSquare, faBookBookmark, faCodeFork, faEllipsis } from "@fortawesome/free-solid-svg-icons"
@@ -80,6 +80,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
 //   import EditRepoModal from "./EditRepoModal"
 import { cn } from "@/lib/utils"
 import { inject } from 'vue'
+import type { UserRepo } from "@/types/github"
 
 
 const triggerReload = inject('triggerReload', () => { });
@@ -98,9 +99,9 @@ export default {
 
     methods: {
 
-        onUpdate(updatedRepo) {
+        onUpdate(updatedRepo: UserRepo) {
             try {
-                const existingRepos = JSON.parse(localStorage.getItem('fakeRepos')) || [];
+                const existingRepos: UserRepo[] = JSON.parse(localStorage.getItem('fakeRepos') || "[]") || [];
                 const index = existingRepos.findIndex(repo => repo.id === updatedRepo.id);
                 if (index === -1) {
                     throw new Error('Repository not found');
@@ -109,17 +110,17 @@ export default {
                 existingRepos[index] = updatedRepo;
                 localStorage.setItem('fakeRepos', JSON.stringify(existingRepos));
                 triggerReload()
-            } catch (error) {
-                console.error('Error updating repository:', error.message);
+            } catch (error: any) {
+                console.error('Error updating repository:', error?.message);
             }
         },
         onDelete() {
             try {
-                const existingRepos = JSON.parse(localStorage.getItem('fakeRepos')) || [];
-                const filteredRepos = existingRepos.filter(repo => repo.id !== this.repo.id);
+                const existingRepos: UserRepo[] = JSON.parse(localStorage.getItem('fakeRepos') || "[]") || [];
+                const filteredRepos = existingRepos.filter(repo => repo.id !== this.repo?.id);
                 localStorage.setItem('fakeRepos', JSON.stringify(filteredRepos));
                 triggerReload()
-            } catch (error) {
+            } catch (error: any) {
                 console.error('Error deleting repository:', error.message);
             }
         }

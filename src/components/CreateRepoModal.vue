@@ -45,7 +45,7 @@
     </Dialog>
 </template>
 
-<script>
+<script lang="ts">
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog";
 import { Button } from "./ui/button";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
@@ -68,7 +68,7 @@ export default {
         FontAwesomeIcon,
     },
     setup() {
-        const triggerReload = inject ('triggerReload', () => { });
+        const triggerReload = inject('triggerReload', () => { });
         const repoName = ref('');
         const repoDescription = ref('');
         const isModalOpen = ref(false);
