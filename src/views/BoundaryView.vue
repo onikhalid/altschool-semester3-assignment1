@@ -14,7 +14,7 @@ const currentTab = ref('home');
 const boundaryError = ref([]);
 
 setTimeout(() => {
-    currentTab.value = asaba;
+    throw new Error('An error occurred');
 }, 1000);
 
 </script>
