@@ -5,9 +5,9 @@ import { RouterView, useRoute, RouterLink } from 'vue-router';
 import { cn } from '@/lib/utils';
 import AppBar from '@/components/AppBar.vue';
 import SideBar from '@/components/SideBar.vue';
-import { type UserProfile, type UserRepo } from './types/github';
+import { type UserProfileType, type UserRepo } from './types/github';
 
-const userProfile = ref<UserProfile | null>(null);
+const userProfile = ref<UserProfileType | null>(null);
 const userRepos = ref<UserRepo[]>([]); // Provide userRepos as an empty array initially
 const loadingProfile = ref(true);
 const loadingRepos = ref(true);
