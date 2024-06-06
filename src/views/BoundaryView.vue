@@ -12,9 +12,9 @@
 import { ref } from 'vue';
 
 export default {
-
     setup() {
         const boundaryError = ref([]);
+        const currentTab = ref('home');
         return {
             currentTab,
             boundaryError,
