@@ -8,17 +8,13 @@
     </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { ref } from 'vue';
+const currentTab = ref('home');
+const boundaryError = ref([]);
 
-export default {
-    setup() {
-        const boundaryError = ref([]);
-        const currentTab = ref('home');
-        return {
-            currentTab,
-            boundaryError,
-        };
-    },
-};
+setTimeout(() => {
+    currentTab.value = asaba;
+}, 1000);
+
 </script>
