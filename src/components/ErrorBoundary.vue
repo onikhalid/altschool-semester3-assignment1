@@ -17,7 +17,7 @@
   <component :is="component" v-else />
 </template>
 
-<script>
+<script lang="ts">
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
