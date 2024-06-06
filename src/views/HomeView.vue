@@ -58,25 +58,25 @@ const profileStats = ref([
     title: 'Repositories',
     icon: faBookBookmark,
     iconBg: 'md:bg-primary-foreground',
-    value: userProfile.value.public_repos || 50,
+    value: userProfile?.public_repos || 50,
   },
   {
     title: 'Gists',
     icon: faComment,
     iconBg: 'md:bg-pink-500',
-    value: userProfile.value.public_gists || 10,
+    value: userProfile?.public_gists || 10,
   },
   {
     title: 'Followers',
     icon: faUser,
     iconBg: 'md:bg-orange-500',
-    value: userProfile.value.followers || 10,
+    value: userProfile?.followers || 10,
   },
   {
     title: 'Following',
     icon: faUserPlus,
     iconBg: 'md:bg-blue-500',
-    value: userProfile.value.following || 19,
+    value: userProfile?.following || 19,
   }
 ]);
 </script>
