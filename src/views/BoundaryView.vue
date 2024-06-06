@@ -13,8 +13,6 @@ import { ref } from 'vue';
 const currentTab = ref('home');
 const boundaryError = ref([]);
 
-setTimeout(() => {
-    throw new Error('An error occurred');
-}, 1000);
+throw new Error('An error occurred, Error boundary has come to the rescue! 🚀');
 
 </script>

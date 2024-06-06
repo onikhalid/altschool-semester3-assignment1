@@ -8,7 +8,7 @@
         {{ errorStatus === 404 ? 'The page you are looking for could not be found.' : 'Sorry, an unexpected error has occurred.' }}
       </p>
       <p v-if="errorStatus !== 404"
-        class="max-w-[30ch] mt-4 px-4 py-2 text-sm italic text-muted-foreground border-2 rounded-md border-foreground">
+        class="max-w-[30ch] mt-4 px-4 py-2 text-sm italic text-center text-muted-foreground border-2 rounded-md border-foreground">
         <i>{{ errorMessage }}</i>
       </p>
       <a @click.prevent="refreshPage"
