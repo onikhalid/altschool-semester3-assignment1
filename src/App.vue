@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils';
 import AppBar from '@/components/AppBar.vue';
 import SideBar from '@/components/SideBar.vue';
 import CreateRepoModal from '@/components/CreateRepoModal.vue';
+import ErrorBoundary from '@/components/ErrorBoundary.vue';
 import { type UserProfileType, type UserRepo } from './types/github';
 
 const userProfile = ref<UserProfileType | null>(null);
@@ -83,7 +84,8 @@ onMounted(fetchGitHubData);
 
       <div className="flex-1 overflow-y-hidden flex lg:m-2 md:p-4 md:pb-0 bg-charcoal md:rounded-xl shadow-2xl">
         <main class="grow relative overflow-y-scroll grid grid-rows-[max-content_1fr]">
-          <nav class="flex gap-4 px-4 overflow-x-scroll sticky top-0 pb-2  mb-4 border-b-2 z-50 bg-background">
+          <nav
+            class="flex items-center gap-4 px-4 overflow-x-scroll sticky top-0 pb-2  mb-4 border-b-2 z-50 bg-background">
             <RouterLink v-for="route in routesList"
               :class="cn('linetaboption !min-w-max', currentRoute.fullPath == route.path && 'active')" :to="route.path"
               v-bind:key="route.path">{{ route.name }}</RouterLink>
@@ -91,7 +93,9 @@ onMounted(fetchGitHubData);
               <CreateRepoModal />
             </div>
           </nav>
-          <RouterView />
+          <ErrorBoundary>
+            <RouterView />
+          </ErrorBoundary>
         </main>
       </div>
     </section>

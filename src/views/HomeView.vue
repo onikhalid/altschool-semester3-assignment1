@@ -27,7 +27,7 @@
     </div>
   </section>
 
-  
+
   <section class="my-12">
     <h4>Top Repositories</h4>
     <div class="flex items-start gap-4 mt-3 flex-wrap max-lg:justify-center">
@@ -51,38 +51,32 @@ import { type UserProfileType } from '@/types/github'
 const userProfile: UserProfileType | undefined = inject('userProfile');
 const loadingProfile = inject('loadingProfile');
 
-const userData = ref({
-  public_repos: 50,
-  public_gists: 10,
-  followers: 200,
-  following: 150
-});
-console.log(loadingProfile)
+
 
 const profileStats = ref([
   {
     title: 'Repositories',
-    value: userProfile?.public_repos,
     icon: faBookBookmark,
-    iconBg: 'md:bg-primary-foreground'
+    iconBg: 'md:bg-primary-foreground',
+    value: userProfile.value.public_repos || 50,
   },
   {
     title: 'Gists',
-    value: userProfile?.public_gists,
     icon: faComment,
-    iconBg: 'md:bg-pink-500'
+    iconBg: 'md:bg-pink-500',
+    value: userProfile.value.public_gists || 10,
   },
   {
     title: 'Followers',
-    value: userProfile?.followers,
     icon: faUser,
-    iconBg: 'md:bg-orange-500'
+    iconBg: 'md:bg-orange-500',
+    value: userProfile.value.followers || 10,
   },
   {
     title: 'Following',
-    value: userProfile?.following,
     icon: faUserPlus,
-    iconBg: 'md:bg-blue-500'
+    iconBg: 'md:bg-blue-500',
+    value: userProfile.value.following || 19,
   }
 ]);
 </script>
